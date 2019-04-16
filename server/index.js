@@ -1,6 +1,7 @@
 require(“dotenv”).config();
 const express = require("express");
 const session = require("express-session");
+const checkForSession = require("./middlewares/checkForSession");
 const app = express();
 //Destructuring SERVER_PORT & SESSION_SECRET from process.env
 let { SERVER_PORT, SESSION_SECRET } = process.env; 
@@ -14,6 +15,7 @@ app.use(session({
 })
 );
 
+app.use(checkForSession);
 
 
 app.listen(SERVER_PORT, () => console.log("Listening on ${SERVER_PORT}."));
