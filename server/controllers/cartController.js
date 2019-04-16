@@ -1,8 +1,8 @@
-const swag = require('./swagController');
+const swag = require('../models/swag');
 
 module.exports = {
 
-add: (req, res) {
+add: (req, res) => {
     const {id} = req.params;
     let { user } = req.session;
 
@@ -18,7 +18,7 @@ add: (req, res) {
     res.status(200).send(user);
 },
 
-delete: (req, res) {
+delete: (req, res) => {
     const {id} = req.params;
     let {user} = req.session;
 
@@ -32,7 +32,7 @@ delete: (req, res) {
     res.status(200).send(user);
 },
 
-checkout: (req, res) {
+checkout: (req, res) => {
     let {user} = req.session;
 
     user.cart = [];

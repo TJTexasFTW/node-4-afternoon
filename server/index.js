@@ -4,6 +4,7 @@ const session = require("express-session");
 const checkForSession = require("./middlewares/checkForSession");
 const swagController = require("./controllers/swagController");
 const authController = require("./controllers/authController");
+const cartController = require("./controllers/cartController");
 const app = express();
 //Destructuring SERVER_PORT & SESSION_SECRET from process.env
 let { SERVER_PORT, SESSION_SECRET } = process.env; 
@@ -19,6 +20,12 @@ app.use(session({
 
 //Adding checkForSession middleware
 app.use(checkForSession);
+
+//cart controllers
+app.post("/api/cart/checkout", cartController.checkout);
+app.post("/api/cart/:id", cartController.add);
+app.delete("/api/cart/:id", cartController.delete);
+
 
 
 app.post("/api/login", authController.login);
