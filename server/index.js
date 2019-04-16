@@ -21,6 +21,7 @@ app.use(session({
 
 //Adding checkForSession middleware
 app.use(checkForSession);
+app.use(express.static(`${__dirname}/../build`));
 
 //cart controllers
 app.post("/api/cart/checkout", cartController.checkout);
@@ -38,4 +39,4 @@ app.get("/api/user", authController.getUser);
 
 app.get("/api/swag", swagController.read);
 
-app.listen(SERVER_PORT, () => console.log("Listening on ${SERVER_PORT}."));
+app.listen(SERVER_PORT, () => console.log(`Listening on ${SERVER_PORT}.`));
