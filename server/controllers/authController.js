@@ -2,7 +2,7 @@
 const users = require("../models/users");
 let id = 1;
 
-modules.exports = {
+module.exports = {
 
     register: (req, res) => {
         const {session} = req;

@@ -1,8 +1,9 @@
-require(“dotenv”).config();
+require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
 const checkForSession = require("./middlewares/checkForSession");
 const swagController = require("./controllers/swagController");
+const authController = require("./controllers/authController");
 const app = express();
 //Destructuring SERVER_PORT & SESSION_SECRET from process.env
 let { SERVER_PORT, SESSION_SECRET } = process.env; 
@@ -18,6 +19,12 @@ app.use(session({
 
 //Adding checkForSession middleware
 app.use(checkForSession);
+
+
+app.post("/api/login", authController.login);
+app.post("/api/register", authController.register);
+app.post("/api/signout", authController.signout);
+app.get("/api/user", authController.getUser);
 
 app.get("/api/swag", swagController.read);
 
