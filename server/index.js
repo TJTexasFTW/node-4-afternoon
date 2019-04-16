@@ -5,6 +5,7 @@ const checkForSession = require("./middlewares/checkForSession");
 const swagController = require("./controllers/swagController");
 const authController = require("./controllers/authController");
 const cartController = require("./controllers/cartController");
+const searchController = require("./controllers/searchController");
 const app = express();
 //Destructuring SERVER_PORT & SESSION_SECRET from process.env
 let { SERVER_PORT, SESSION_SECRET } = process.env; 
@@ -26,8 +27,10 @@ app.post("/api/cart/checkout", cartController.checkout);
 app.post("/api/cart/:id", cartController.add);
 app.delete("/api/cart/:id", cartController.delete);
 
+//search controller
+app.get("/api/search", searchController.search);
 
-
+//auth controller endpoints
 app.post("/api/login", authController.login);
 app.post("/api/register", authController.register);
 app.post("/api/signout", authController.signout);
